@@ -1,4 +1,3 @@
-const e = require('express')
 const globals = require('../globals')
 
 module.exports = function(app) {
@@ -19,7 +18,8 @@ module.exports = function(app) {
                 "name": req.params.name,
                 "location": {
                     "x": 10,
-                    "y": 20
+                    "y": 5,
+                    "screen": "screen01"
                 },
                 "data": {}
             }
