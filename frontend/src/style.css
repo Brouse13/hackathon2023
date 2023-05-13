@@ -2,35 +2,33 @@ body {
     background-color: rgb(46, 174, 234);
     display: inline-block;
     align-items: center;
+    /* overflow: hidden; */
     width: 90%;
-    height: 100vh;
+    height: 10vh;
 }
 
 #contenedor {
     width: 100%;
     height: 100vh;
-	background-image: url('/assets/mapa.png');
+	background-image: url('../assets/mapa.png');
     background-repeat: no-repeat;
     background-size: cover;
 	margin: 0 auto;
+    /* overflow: hidden; */
 }
 
 
 #persona {
     width: 100px;
     height: 100px;
-    background-image: url(/assets/Jodi.png);
+    background-image: url(../assets/Jodi.png);
     display: flex;
     position: relative;
     top: 50px;
     left: 50px;
-    transition: all 0.5s ease-out;
+    transition: all 0.75s ease-out;
 }
 
-#logo {
-    height: 50px;
-    background-image: url();
-}
 
 #img {
     width: 100%;
