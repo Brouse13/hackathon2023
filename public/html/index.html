@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html>
 <head>
-    <meta charset="utf-8">
-    <title>HTML</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
+    <title>Inicio de sesión</title>
+    <link rel="stylesheet" href="form.css">
 </head>
-
 <body>
-  <header> 
-    <img id="img" src="../assets/logo_vueling_header.png" alt="Error al cargar el logo vueling header">
-  </header>
-  <div id="contenedor">
-    <div id="persona"></div>
-  </div>
-  <script src="../js/index.js"></script>
+    <div>
+        <img src="../assets/logo_vueling_header.png" alt="">
+    </div>
+    <div class="container">
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label for="username"><strong>Nombre de usuario:</strong></label>
+                <input type="text" id="username" name="username"/>
+            </div>
+            <button type="submit">Iniciar sesión</button>
+        </form>
+    </div>
 </body>
 </html>
