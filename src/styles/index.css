@@ -1,0 +1,13 @@
+body {
+  background-color: rgb(46, 174, 234);
+  display: inline-block;
+  align-items: center;
+  /* overflow: hidden; */
+  width: 90%;
+  height: 10vh; 
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
