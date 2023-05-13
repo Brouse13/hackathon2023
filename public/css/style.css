@@ -9,7 +9,7 @@ body {
 #contenedor {
     width: 100%;
     height: 100vh;
-	background-image: url('../assets/mapa.png');
+	background-image: url('/assets/mapa.png');
     background-repeat: no-repeat;
     background-size: cover;
 	margin: 0 auto;
@@ -19,7 +19,7 @@ body {
 #persona {
     width: 100px;
     height: 100px;
-    background-image: url('../assets/Jodi.png');
+    background-image: url(/assets/Jodi.png);
     display: flex;
     position: relative;
     top: 50px;
