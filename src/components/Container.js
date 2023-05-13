@@ -9,17 +9,15 @@ const Container = () => {
         let clickX = evento.clientX;
         let clickY = evento.clientY;
         setPosition({x: clickX, y: clickY})
-        console.log(clickX);
-        console.log(clickY);
+        // console.log(clickX);
+        // console.log(clickY);
     }
-    
+
     return(
         <div id="container" onClick={handleClick}>
             <Character position={position}/>
         </div>
     );
-
-    
 }
 
 export default Container
