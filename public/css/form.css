@@ -4,7 +4,7 @@ body{
 
 #modal-login {
     top: 10px;
-    background-image: url('assets/sky.png');
+    background-image: url('../assets/sky.png');
 }
 
 .container {

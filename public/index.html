@@ -15,7 +15,7 @@
                     <label for="username"><strong>Nombre de usuario:</strong></label>
                     <input type="text" id="username" name="username"/>
                 </div>
-                <button type="button">Iniciar sesión</button>
+                <button type="button" onclick="form_submit()">Iniciar sesión</button>
             </div>
         </div>
     </div>
@@ -25,9 +25,14 @@
 <script>
     let socket = io();
     function form_submit() {
-        let content = document.getElementById('username').textContent
+        let content = document.getElementById('username').value
 
-        socket.emit('user_login', content)
+        if(!content) {
+            alert(`Invalid name ${content}`)
+            return
+        }
+        
+        socket.emit('user_chat', {'username': "ds", 'message': "ds"})
     }
 </script>
 </html>

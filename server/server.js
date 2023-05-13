@@ -26,26 +26,39 @@ app.use(express.static('public'));
 //Link routes
 require('./routes/users')(app)
 require('./routes/location')(app)
-require('./routes/login')(app)
 
-server.listen(3000, () => {
-    console.log('listening on *:3000');
-});
-
+//Handle connections
+const callbacks = require('./callbacks');
 io.on('connection', (socket) => {
-    console.log('a user connected');
+    console.log('New socket connect')
 
     socket.on('disconnect', () => {
-        console.log('User disconnected')
+        console.log('Socket disconnected')
+    })
+
+    //Call the childs to send the message
+    socket.on('user_chat', (user, msg) => {
+        //Call event on client and handle event
+        socket.broadcast.emit('user_chat', {username: user, message: msg})
+        callbacks.chat(user, msg)
+    })
+
+    //Call all the childs to log the user
+    socket.on('user_login', (username) => {
+        //Call event on client and handle event
+        socket.broadcast.emit('user_login', username)
+        callbacks.login(username)
+    })
+
+    //Call all the childs to move the user to the location
+    socket.on('user_move', (user, location) => {
+        //Call event on client and handle event
+        socket.broadcast.emit('user_move', {'user': user, 'location': location})
+        callbacks.move(user, location)
     })
 });
 
-app.get('/test', (req, res) => {
-    res.sendFile(__dirname + '/index.html')
-})
-
-io.on('connection', (socket) => {
-    socket.on('chat message', (msg) => {
-        io.emit('chat message', msg);
-    });
+//Start SocketIO listen on port 3000
+server.listen(3000, () => {
+    console.log('listening on *:3000');
 });

@@ -22,9 +22,8 @@ module.exports = function(app) {
             }
         
             users.push(user)
-            res.json(user)
 
-            console.log(users)
+            res.redirect('/game.html')
             return
         }
         res.json(HTTP_message(400, "Duplicate user"))
