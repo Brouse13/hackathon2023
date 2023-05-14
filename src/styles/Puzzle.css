@@ -1,0 +1,54 @@
+#img {
+    width: 100%;
+}
+
+body {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../assets/fondo.png);
+    width: 100%;
+}
+
+table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+#textganador {
+    visibility: hidden;
+}
+
+p {
+    visibility: visible;
+}
+
+h1 {
+
+    font-family: 'Poppins', sans-serif;
+    text-decoration: underline;
+    text-transform: uppercase;
+
+}
+
+.flexbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+
+button {
+    padding: 20px;
+    font-size: 20px;
+    background-color: #4d4d4d;
+    color: #F3F3F3;
+    box-shadow: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
