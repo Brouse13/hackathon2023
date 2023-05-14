@@ -3,13 +3,14 @@ import '../styles/Character.css'
 import Player from './Character.styled'
 
 const Character = (props) => {
+    const id = 'Jesús';
     const [relativePos, setRelativePos] = useState({top:0, left:0})
 
     const image = document.getElementById("container");
     
     useEffect(()=> {
         const {x,y} = props.position
-        console.log({x,y})
+        //console.log({x,y})
         let top = 0
         let left = 0
 
@@ -30,12 +31,14 @@ const Character = (props) => {
         }
 
         setRelativePos({top,left})
-        console.log({relativePos});
+        //console.log({relativePos});
     },[props.position])
 
     return(
-        //<div id="character"></div>
-        <Player position={relativePos}/>
+        <>
+            <Player position={relativePos}/>
+        </>
+        
     );
 }
 
