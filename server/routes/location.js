@@ -12,7 +12,10 @@ module.exports = function(app) {
     //Set a new location to a player
     app.put('/users/:user', (req, res) => {
         if(req.query.x == null  || req.query.y == null || req.query.screen) {
-            res.json(HTTP_message(400, "Missing params"))
+            res.json({
+                "error": 400,
+                "message": "Missing params"
+            })
             return
         }
 

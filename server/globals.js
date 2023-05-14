@@ -1,23 +1,31 @@
-var users = [
-    {
-        "name": "Brouse",
-        "location": {
-            "x": 10,
-            "y": 20,
-            "screen": "screen01"
-        },
-        "data": {
+const User = require('./user')
 
+class UserCache {
+    static #users = []
+
+    constructor() {
+    }
+
+    addUser(user) {
+        UserCache.#users.push(user)
+    }
+
+    getUser(name) {
+        return UserCache.#users.filter(u => u.getName() == name)
+    }
+
+    removeUser(user) {
+        let found = UserCache.#users.indexOf(this.getUser(user.getName()));
+
+        //Remove from array
+        if(found > -1) {
+            UserCache.#users.splice(index, index != 0)
         }
     }
-]
 
-function HTTP_message(type, err_msg) {
-    return {
-        "error": type,
-        "message": err_msg
+    getUserByID(id) {
+        return UserCache.#users.filter(u => id == u.getId())
     }
 }
 
-global.users = users;
-global.HTTP_message = (type, err_msg) => HTTP_message(type, err_msg);
+module.exports = UserCache

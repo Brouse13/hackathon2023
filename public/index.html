@@ -32,7 +32,9 @@
             return
         }
         
-        socket.emit('user_chat', {'username': "ds", 'message': "ds"})
+        socket.emit('user_chat', "ds", "ds")
+        socket.emit('user_move', "user", "location")
+        socket.emit('user_login', "user")
     }
 </script>
 </html>

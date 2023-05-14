@@ -5,7 +5,10 @@ module.exports = function(app) {
     //Get a user by his id
     app.get('/users/:name', (req, res) => {
         let user = users.find(p => p.name == req.params.name)
-        res.json(user ? user : HTTP_message(404, "User not found"))
+        res.json(user ? user : {
+            "error": 400,
+            "message": "User not found"
+        })
     })
 
 
@@ -38,6 +41,9 @@ module.exports = function(app) {
             users.splice(index, index != -1);
         }
 
-        res.json(HTTP_message(200, index))
+        res.json({
+            "error": 200,
+            "message": index
+        })
     })
 }

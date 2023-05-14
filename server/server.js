@@ -1,16 +1,24 @@
+//Express
 const express = require('express')
 const app = express()
-const port = 3000
 
+//Express body parser
 const bodyParser = require('body-parser')
 const multer = require('multer')
 const upload = multer()
 
+//Socket.IO
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
+//User and User cache
+const User = require('./user')
+const UserCache = require('./globals')
+const cache = new UserCache();
+
+//Set public directory
 app.use(express.static(__dirname + '/public/'))
 
 //Parse application/json
@@ -30,30 +38,43 @@ require('./routes/location')(app)
 //Handle connections
 const callbacks = require('./callbacks');
 io.on('connection', (socket) => {
-    console.log('New socket connect')
+    console.log(`New socket connect: ${socket.id}`)
 
     socket.on('disconnect', () => {
-        console.log('Socket disconnected')
+        let user = cache.getUserByID(socket.id)
+
+        //Not removed player 
+        if(user) {
+            console.log('ERROR Player not loaded from frame')
+        }
+
+        console.log(`Socket disconected: ${socket.id}`)
     })
 
     //Call the childs to send the message
     socket.on('user_chat', (user, msg) => {
-        //Call event on client and handle event
-        socket.broadcast.emit('user_chat', {username: user, message: msg})
+        //Handle event
+        socket.broadcast.emit('user_chat', user, msg)
+
+        //Call frontEnt event
         callbacks.chat(user, msg)
     })
 
     //Call all the childs to log the user
     socket.on('user_login', (username) => {
-        //Call event on client and handle event
+        //Handle event
         socket.broadcast.emit('user_login', username)
+
+        //Call frontEnd callback
         callbacks.login(username)
     })
 
     //Call all the childs to move the user to the location
     socket.on('user_move', (user, location) => {
-        //Call event on client and handle event
-        socket.broadcast.emit('user_move', {'user': user, 'location': location})
+        //Handle event
+        socket.broadcast.emit('user_move', user, location)
+
+        //Call frontEnt event
         callbacks.move(user, location)
     })
 });
