@@ -18,13 +18,13 @@
                 <button type="button" onclick="form_submit()">Iniciar sesión</button>
             </div>
         </div>
-        <div id='root'></div>
     </div>
+    <div id='root' style="display: none;"></div>
 </body>
 
 <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
 <script>
-    let socket = io();
+    let socket = io('http://localhost:5000');
     function form_submit() {
         let content = document.getElementById('username').value
 
@@ -33,9 +33,10 @@
             return
         }
         
-        socket.emit('user_chat', "ds", "ds")
-        socket.emit('user_move', "user", "location")
-        socket.emit('user_login', "user")
+        socket.emit('user_login', content)
+
+        document.getElementById('root').style.display = "block";
+        document.getElementById('modal-login').style.display = "none";
     }
 </script>
 </html>

@@ -1,3 +1,5 @@
+//const container = require('../src/components/Container')
+
 exports.chat = (username, message) => {
     console.log(`Chat: ${username} ${message}`)
 }
@@ -9,4 +11,5 @@ exports.move = (username, location) => {
 
 exports.login = (username) => {
     console.log(`Login ${username}`)
+    //container.addPlayer(username)
 }

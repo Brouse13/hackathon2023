@@ -11,7 +11,11 @@ const upload = multer()
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
-const io = new Server(server);
+const io = new Server(server,{
+    cors:{
+        origin: "*"
+    }
+});
 
 //User and User cache
 const User = require('./user')
@@ -57,7 +61,7 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('user_chat', user, msg)
 
         //Call frontEnt event
-        callbacks.chat(user, msg)
+        //callbacks.chat(user, msg)
     })
 
     //Call all the childs to log the user
@@ -66,7 +70,7 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('user_login', username)
 
         //Call frontEnd callback
-        callbacks.login(username)
+        //callbacks.login(username)
     })
 
     //Call all the childs to move the user to the location
@@ -75,11 +79,15 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('user_move', user, location)
 
         //Call frontEnt event
-        callbacks.move(user, location)
+        //callbacks.move(user, location)
     })
 });
 
+app.get('/',(rec,res) => {
+    res.sendFile('index.html')
+})
+
 //Start SocketIO listen on port 3000
-server.listen(3000, () => {
-    console.log('listening on *:3000');
+server.listen(5000, () => {
+    console.log('listening on *:5000');
 });
