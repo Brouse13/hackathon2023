@@ -11,7 +11,10 @@ export const socket = io(URL);
 
 
 const players = [
-    
+    {
+        id: 1,
+        username: 'test'
+    }
 ]
 
 let id = 1;
